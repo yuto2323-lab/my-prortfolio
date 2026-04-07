@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>个人作品集</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#42a5f5',
+            secondary: '#5c6bc0',
+          },
+          fontFamily: {
+            sans: ['Microsoft YaHei', 'sans-serif'],
+          },
+        },
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .section {
+        @apply w-full h-screen flex items-center justify-center px-4 py-10 overflow-hidden;
+      }
+      .cover {
+        @apply bg-gradient-to-br from-primary to-secondary text-white flex flex-col items-center justify-center text-center;
+      }
+      .about-card {
+        @apply bg-white rounded-2xl shadow-lg p-8 w-full max-w-5xl flex flex-col md:flex-row gap-8;
+      }
+      .work-grid {
+        @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6;
+      }
+      .work-card {
+        @apply bg-white rounded-xl shadow-md overflow-hidden transition-transform duration-300 hover:-translate-y-2 cursor-pointer;
+      }
+      .text-animate > div {
+        @apply opacity-0 translate-y-4 transition-all duration-700;
+      }
+      .text-animate.active > div {
+        @apply opacity-100 translate-y-0;
+      }
+      .text-animate > div:nth-child(1) { transition-delay: 0.2s; }
+      .text-animate > div:nth-child(2) { transition-delay: 0.4s; }
+      .text-animate > div:nth-child(3) { transition-delay: 0.6s; }
+      .text-animate > div:nth-child(4) { transition-delay: 0.8s; }
+    }
+  </style>
+</head>
+<body class="font-sans text-gray-800 overflow-hidden">
+  <!-- 导航栏 -->
+  <nav class="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center py-4">
+        <a href="#cover" class="text-xl font-bold text-primary">我的作品集</a>
+        <div class="hidden md:flex space-x-8">
+          <a href="#cover" class="text-gray-600 hover:text-primary transition-colors">封面</a>
+          <a href="#about" class="text-gray-600 hover:text-primary transition-colors">自我介绍</a>
+          <a href="#works" class="text-gray-600 hover:text-primary transition-colors">作品展示</a>
+        </div>
+        <button id="menuBtn" class="md:hidden text-gray-600 focus:outline-none">
+          <i class="fa fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+    <!-- 移动端菜单 -->
+    <div id="mobileMenu" class="hidden md:hidden bg-white shadow-lg absolute w-full">
+      <div class="px-4 py-3 space-y-3">
+        <a href="#cover" class="block text-gray-600 hover:text-primary">封面</a>
+        <a href="#about" class="block text-gray-600 hover:text-primary">自我介绍</a>
+        <a href="#works" class="block text-gray-600 hover:text-primary">作品展示</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 第一页：封面 -->
+<section id="cover" class="section cover" style="background-image: url('封面.png'); background-size: cover; background-position: center; height: 100vh; position: relative;">
+  <!-- 标题和副标题：整体下移到中间偏下 -->
+  <div class="max-w-3xl mx-auto" style="position: absolute; top:80%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+    <h1class="text-3xl md:text-4xl lg:text-5xl font-bold mb-9 text-white">我的个人作品集</h1>
+    <p class="text-xl md:text-xl opacity-60 mb-8 text-white">专注设计 / 创作 / 展示</p>
+  </div>
+
+  <!-- 按钮：绝对定位在底部，完美贴合黑色区域 -->
+  <a href="#about" class="inline-block bg-white/20 hover:bg-white/30 transition-colors duration-300 py-2 px-6 rounded-full text-lg text-white" 
+     style="position: absolute; bottom: 8%; left: 50%; transform: translateX(-50%);">
+    <i class="fa fa-arrow-down mr-2"></i>开始浏览
+  </a>
+</section>
+
+  <!-- 第二页：自我介绍 -->
+<section id="about" class="section bg-gray-50 relative overflow-hidden">
+  <!-- 背景底纹：ABOUT ME（在卡片外面） -->
+  <div class="absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-1/2 text-[260px] font-black text-gray-200 opacity-40 pointer-events-none select-none" style="white-space: nowrap;">
+    ABOUT ME
+  </div>
+
+  <!-- 柔和渐变底纹 -->
+  <div class="absolute -top-20 -right-20 w-72 h-72 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-60"></div>
+  <div class="absolute top-40 -left-20 w-72 h-72 bg-pink-100 rounded-full mix-blend-multiply filter blur-3xl opacity-60"></div>
+  <div class="absolute bottom-40 right-20 w-72 h-72 bg-yellow-100 rounded-full mix-blend-multiply filter blur-3xl opacity-60"></div>
+
+  <!-- 简笔画风格线条装饰 -->
+  <div class="absolute top-[10%] left-[15%] w-40 h-0.5 bg-blue-300 rotate-12 opacity-30"></div>
+  <div class="absolute top-[15%] right-[15%] w-32 h-0.5 bg-pink-300 -rotate-6 opacity-30"></div>
+  <div class="absolute bottom-[20%] left-[20%] w-28 h-0.5 bg-yellow-300 rotate-45 opacity-30"></div>
+  <div class="absolute bottom-[15%] right-[10%] w-36 h-0.5 bg-green-300 -rotate-12 opacity-30"></div>
+
+  <!-- 核心卡片：居中版 -->
+  <div class="w-full max-w-4xl mx-auto px-6">
+    <div class="about-card flex flex-col md:flex-row items-center justify-center gap-10 relative bg-white p-8 rounded-2xl shadow-md">
+      <!-- 左侧图片 -->
+      <div class="w-full md:w-2/5 flex justify-center">
+        <div class="relative">
+          <img src="picture1.png" alt="个人照片" class="w-full h-auto rounded-xl object-cover shadow-lg transform hover:scale-105 transition-all duration-500">
+          
+          <!-- 你的小图标 -->
+          <div class="absolute -bottom-12 -right--27">
+            <img src="Group 1.png" class="w-44 h-auto">
+          </div>
+        </div>
+      </div>
+
+      <!-- 右侧文字 -->
+      <div class="w-full md:w-3/5 text-animate" id="aboutText">
+        <h2 class="text-3xl font-bold mb-4 text-gray-800"><span style="color: #FFA500;">关于</span><span style="color: #333333;">我</span></h2>
+        <p class="text-gray-600 mb-4">你好！我叫余琴，一个热爱生活、热爱创作的创作者。</p>
+        <p class="text-gray-600 mb-4">📌大学期间，我在团队协作与创意实践中不断成长，一步步夯实了设计与执行的能力。我始终相信，好的设计是创意与实用的共生。我乐于拥抱新工具、新趋势，在实践中不断突破创意的可能性，努力传递温度与价值。</p>
+        <p class="text-gray-600 mb-4">我始终保持着对新事物的好奇，在学习与挑战中探索设计的更多可能性，用创作记录生活、传递热爱。</p>
+        <p class="text-gray-600">很高兴在这里与你相遇，希望未来一天进步！</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 第三页：作品展示 -->
+<section id="works" class="section bg-white relative">
+  <!-- 👇 左下角小鸭子（这次绝对能看见） -->
+  <div style="position: absolute; left: 30px; bottom: 30px; z-index: 999;">
+    <img src="Group 1.png" style="width: 140px; height: auto; opacity: 0.8;">
+  </div>
+
+  <div class="w-full max-w-7xl mx-auto relative z-10">
+    <!-- 标题+星星：作品橙色，展示黑色，完美对齐 -->
+<h2 class="text-3xl font-bold text-center mb-10 text-gray-800" style="display: flex; align-items: center; justify-content: center; gap: 12px;">
+  <img src="star.png" style="width: 24px; height: auto; flex-shrink: 0;">
+  <span style="color: #FFA500;">作品</span><span style="color: #333333;">展示</span>
+  <img src="star.png" style="width: 24px; height: auto; flex-shrink: 0;">
+</h2>
+    <div class="work-grid">
+
+      <!-- 作品1 -->
+      <div class="work-card" onclick="openWork1Modal()">
+        <img src="Group 147.png" alt="作品1" class="w-full h-48 object-cover">
+        <div class="p-4">
+          <h3 class="text-lg font-semibold mb-2">APP改版设计</h3>
+          <p class="text-gray-600 text-sm">调研分析 页面设计</p>
+        </div>
+      </div>
+
+      <!-- 作品2 -->
+      <div class="work-card" onclick="openWork2Modal()">
+        <img src="Group 155.png" alt="作品2" class="w-full h-48 object-cover">
+        <div class="p-4">
+          <h3 class="text-lg font-semibold mb-2">IP运营</h3>
+          <p class="text-gray-600 text-sm">IP设计 运营物料</p>
+        </div>
+      </div>
+
+      <!-- 作品3 -->
+      <div class="work-card" onclick="openWork3Modal()">
+        <img src="Group 154.png" alt="作品3" class="w-full h-48 object-cover">
+        <div class="p-4">
+          <h3 class="text-lg font-semibold mb-2">品牌物料和其他</h3>
+          <p class="text-gray-600 text-sm">主视觉、标志、包装</p>
+        </div>
+      </div>
+
+      <!-- 作品4 -->
+      <div class="work-card" onclick="openWork4Modal()">
+        <img src="Group 153.png" alt="作品4" class="w-full h-48 object-cover">
+        <div class="p-4">
+          <h3 class="text-lg font-semibold mb-2">车载HMI</h3>
+          <p class="text-gray-600 text-sm">中控屏、副屏、语音助手</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 作品1弹窗 -->
+<div id="work1Modal" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background:rgba(0,0,0,0.9); z-index: 9999; overflow-y: auto; padding:40px 0; display:none;" onclick="this.style.display='none'">
+  <div style="position:fixed; top:20px; right:20px; color:#fff; font-size:2.5rem; cursor:pointer; z-index:10000;" onclick="event.stopPropagation(); document.getElementById('work1Modal').style.display='none'">&times;</div>
+  <div style="width:100%; display:flex; flex-direction:column; align-items:center; gap:20px;">
+    <img src="img1-1.png" style="width:90%; max-width:1000px; height:auto; object-fit:contain;">
+    <img src="img1-2.png" style="width:90%; max-width:1000px; height:auto; object-fit:contain;">
+  </div>
+</div>
+
+<!-- 作品2弹窗 -->
+<div id="work2Modal" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background:rgba(0,0,0,0.9); z-index: 9999; overflow-y: auto; padding:40px 0; display:none;" onclick="this.style.display='none'">
+  <div style="position:fixed; top:20px; right:20px; color:#fff; font-size:2.5rem; cursor:pointer; z-index:10000;" onclick="event.stopPropagation(); document.getElementById('work2Modal').style.display='none'">&times;</div>
+  <div style="width:100%; display:flex; flex-direction:column; align-items:center; gap:20px;">
+    <img src="img2-1.png" style="width:90%; max-width:1000px; height:auto; object-fit:contain;">
+  </div>
+</div>
+
+<!-- 作品3弹窗 -->
+<div id="work3Modal" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background:rgba(0,0,0,0.9); z-index: 9999; overflow-y: auto; padding:40px 0; display:none;" onclick="this.style.display='none'">
+  <div style="position:fixed; top:20px; right:20px; color:#fff; font-size:2.5rem; cursor:pointer; z-index:10000;" onclick="event.stopPropagation(); document.getElementById('work3Modal').style.display='none'">&times;</div>
+  <div style="width:100%; display:flex; flex-direction:column; align-items:center; gap:20px;">
+    <img src="img3-1.png" style="width:90%; max-width:1000px; height:auto; object-fit:contain;">
+  </div>
+</div>
+
+<!-- 作品4弹窗 -->
+<div id="work4Modal" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background:rgba(0,0,0,0.9); z-index: 9999; overflow-y: auto; padding:40px 0; display:none;" onclick="this.style.display='none'">
+  <div style="position:fixed; top:20px; right:20px; color:#fff; font-size:2.5rem; cursor:pointer; z-index:10000;" onclick="event.stopPropagation(); document.getElementById('work4Modal').style.display='none'">&times;</div>
+  <div style="width:100%; display:flex; flex-direction:column; align-items:center; gap:20px;">
+    <img src="img4-1.png" style="width:90%; max-width:1000px; height:auto; object-fit:contain;">
+    <img src="img4-2.png" style="width:90%; max-width:1000px; height:auto; object-fit:contain;">
+  </div>
+</div>
+
+<script>
+function openWork1Modal(){document.getElementById('work1Modal').style.display='block';}
+function openWork2Modal(){document.getElementById('work2Modal').style.display='block';}
+function openWork3Modal(){document.getElementById('work3Modal').style.display='block';}
+function openWork4Modal(){document.getElementById('work4Modal').style.display='block';}
+</script>
+    </div>
+
+    <script>
+      // 打开弹窗函数（完全保留你原本的逻辑）
+      function openWork1Modal() {document.getElementById('work1Modal').style.display = 'block';}
+      function openWork2Modal() {document.getElementById('work2Modal').style.display = 'block';}
+      function openWork3Modal() {document.getElementById('work3Modal').style.display = 'block';}
+      function openWork4Modal() {document.getElementById('work4Modal').style.display = 'block';}
+
+      // 点击背景关闭（完全保留你原本的逻辑，只优化判断）
+      document.querySelectorAll('[id^="work"][id$="Modal"]').forEach(modal => {
+        modal.addEventListener('click', function(e) {
+          if (e.target === this) {
+            this.style.display = 'none';
+          }
+        });
+      });
+    </script>
+  </div>
+</section>
+
+  <!-- 图片预览弹窗 -->
+  <div id="imageModal" class="fixed inset-0 bg-black/90 z-50 flex items-center justify-center hidden">
+    <button id="closeModal" class="absolute top-6 right-6 text-white text-3xl hover:text-gray-300 transition-colors">
+      <i class="fa fa-times"></i>
+    </button>
+    <button id="prevBtn" class="absolute left-6 text-white text-4xl hover:text-gray-300 transition-colors">
+      <i class="fa fa-angle-left"></i>
+    </button>
+    <button id="nextBtn" class="absolute right-6 text-white text-4xl hover:text-gray-300 transition-colors">
+      <i class="fa fa-angle-right"></i>
+    </button>
+    <div class="max-w-[90%] max-h-[90vh]">
+      <img id="modalImage" src="" alt="预览图片" class="max-w-full max-h-[90vh] object-contain">
+      <h3 id="modalTitle" class="text-white text-xl mt-4 text-center"></h3>
+    </div>
+  </div>
+
+  <script>
+    // 移动端菜单切换
+    document.getElementById('menuBtn').addEventListener('click', function() {
+      document.getElementById('mobileMenu').classList.toggle('hidden');
+    });
+
+    // 平滑滚动
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop,
+            behavior: 'smooth'
+          });
+          // 关闭移动端菜单
+          document.getElementById('mobileMenu').classList.add('hidden');
+        }
+      });
+    });
+
+    // 自我介绍文字动画
+    function checkAboutAnimation() {
+      const aboutSection = document.getElementById('about');
+      const aboutText = document.getElementById('aboutText');
+      const rect = aboutSection.getBoundingClientRect();
+      // 当自我介绍区域进入视口时触发动画
+      if (rect.top < window.innerHeight * 0.7 && rect.bottom > window.innerHeight * 0.3) {
+        aboutText.classList.add('active');
+      }
+    }
+
+    // 页面加载和滚动时检查动画
+    window.addEventListener('load', checkAboutAnimation);
+    window.addEventListener('scroll', checkAboutAnimation);
+
+    // 图片预览功能
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    const modalTitle = document.getElementById('modalTitle');
+    const closeModal = document.getElementById('closeModal');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    
+    let workCards = document.querySelectorAll('.work-card');
+    let currentIndex = 0;
+    let works = Array.from(workCards).map(card => ({
+      img: card.getAttribute('data-img'),
+      title: card.getAttribute('data-title')
+    }));
+
+    workCards.forEach((card, index) => {
+      card.addEventListener('click', function() {
+        modal.classList.remove('hidden');
+        modalImg.src = this.getAttribute('data-img');
+        modalTitle.textContent = this.getAttribute('data-title');
+        currentIndex = index;
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    closeModal.addEventListener('click', function() {
+      modal.classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    });
+
+    prevBtn.addEventListener('click', function() {
+      currentIndex = (currentIndex - 1 + works.length) % works.length;
+      updateModalImage();
+    });
+
+    nextBtn.addEventListener('click', function() {
+      currentIndex = (currentIndex + 1) % works.length;
+      updateModalImage();
+    });
+
+    function updateModalImage() {
+      modalImg.src = works[currentIndex].img;
+      modalTitle.textContent = works[currentIndex].title;
+    }
+
+    // 点击弹窗外部关闭
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) {
+        closeModal.click();
+      }
+    });
+  </script>
+</body>
+</html>
